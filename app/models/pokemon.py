@@ -1,9 +1,9 @@
-from sqlalchemy import Column, Integer, Boolean
+from sqlalchemy import Column, Integer, String
 from app import db
 
 
-class Monster(db.Model):
-    __tablename__ = 'monster'
+class Pokemon(db.Model):
+    __tablename__ = 'pokemon'
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -14,8 +14,6 @@ class Monster(db.Model):
     sp_attack = Column(Integer)
     sp_defense = Column(Integer)
     speed = Column(Integer)
-    gen = Column(Integer) 
-    legendary = Column(Boolean) 
 
     def __iter__(self):
         yield 'name', self.name
@@ -26,5 +24,3 @@ class Monster(db.Model):
         yield 'sp_attack', self.sp_attack
         yield 'sp_defense', self.sp_defense
         yield 'speed', self.speed
-        yield 'gen', self.gen
-        yield 'legendary', self.legendary
