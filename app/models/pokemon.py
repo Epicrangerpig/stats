@@ -30,3 +30,6 @@ class Pokemon(db.Model):
         yield 'sp_attack', self.sp_attack
         yield 'sp_defense', self.sp_defense
         yield 'speed', self.speed
+        yield 'type1', Type.query.get(self.type1_id).name
+        if self.type2_id:
+            yield 'type2', Type.query.get(self.type2_id).name
