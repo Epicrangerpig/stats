@@ -8,4 +8,3 @@ class Type(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    pokemon = relationship('Pokemon', backref='pokemon', lazy='dynamic')

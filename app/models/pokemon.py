@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from app import db
 from app.models.type import Type
 
@@ -17,6 +18,7 @@ class Pokemon(db.Model):
     speed = Column(Integer)
     type1_id = Column(Integer, ForeignKey('type.id'))
     type2_id = Column(Integer, ForeignKey('type.id'))
+
 
     def __iter__(self):
         yield 'id', self.id
