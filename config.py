@@ -13,7 +13,7 @@ class Production(Config):
 
 class Development(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql:///pokestats'
+    SQLALCHEMY_DATABASE_URI = 'postgresql:///pokemon'
 
 
 class Testing(Config):
