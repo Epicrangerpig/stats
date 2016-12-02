@@ -14,7 +14,7 @@ class LoadPokemon(Command):
 
         for index, row in data_frame.iterrows():
             pokemon = Pokemon()
-            pokemon.id = row['id']
+            pokemon.ndex = row['ndex']
             pokemon.name = row['species']
             pokemon.attack = row['attack']
             pokemon.defense = row['defense']

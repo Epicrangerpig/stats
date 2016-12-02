@@ -8,6 +8,7 @@ class Pokemon(db.Model):
     __tablename__ = 'pokemon'
 
     id = Column(Integer, primary_key=True)
+    ndex = Column(Integer)
     name = Column(String)
     total = Column(Integer)
     hp = Column(Integer)
@@ -21,7 +22,7 @@ class Pokemon(db.Model):
 
 
     def __iter__(self):
-        yield 'id', self.id
+        yield 'ndex', self.ndex
         yield 'name', self.name
         yield 'total', self.total
         yield 'hp', self.hp
