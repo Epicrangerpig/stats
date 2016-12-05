@@ -8,3 +8,7 @@ class Type(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    
+
+    def __iter__(self):
+        yield 'name', self.name

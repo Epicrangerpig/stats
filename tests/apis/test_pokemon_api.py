@@ -8,13 +8,11 @@ class TestPokemonApi(BaseTestCase):
 
 
     def setUp(self):
-    	LoadTypes().run()
         PokemonFactory.create_batch(10)
 
 
     def tearDown(self):
         Pokemon.query.delete()
-        Type.query.delete()
 
 
     def test_api_should_return_10_pokemon(self):

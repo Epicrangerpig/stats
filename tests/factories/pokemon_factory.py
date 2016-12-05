@@ -1,6 +1,12 @@
 import factory
 from app import db
 from app.models.pokemon import Pokemon
+from type_factory import TypeFactory
+from faker import Faker
+from random import randint
+
+
+faker = Faker()
 
 
 class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
@@ -9,14 +15,14 @@ class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = Pokemon
         sqlalchemy_session = db.session
     
-    name = 'asddfdsa'
-    ndex = 1
-    attack = 10
-    defense = 10
-    sp_attack = 10
-    sp_defense = 10
-    hp = 10
-    total = 60
-    speed = 10
-    type1_id = 1
-    type2_id = 2
+    name = faker.name()
+    ndex = randint(1, 900)
+    attack = randint(1, 200)
+    defense = randint(1, 200)
+    sp_attack = randint(1, 200)
+    sp_defense = randint(1, 200)
+    hp = randint(1, 200)
+    total = randint(1, 200)
+    speed = randint(1, 200)
+    type1 = factory.SubFactory(TypeFactory)
+    type2 = factory.SubFactory(TypeFactory)

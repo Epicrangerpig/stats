@@ -1,10 +1,8 @@
 from app import manager
-from scripts.load_types import LoadTypes
-from scripts.load_pokemon import LoadPokemon
 from flask_migrate import MigrateCommand
+from scripts.load_database import LoadDatabase
 
 
-manager.add_command('loadtypes', LoadTypes)
-manager.add_command('loadpokemon', LoadPokemon)
+manager.add_command('loaddatabase', LoadDatabase)
 manager.add_command('db', MigrateCommand)
 manager.run()

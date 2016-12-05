@@ -19,7 +19,8 @@ class Pokemon(db.Model):
     speed = Column(Integer)
     type1_id = Column(Integer, ForeignKey('type.id'))
     type2_id = Column(Integer, ForeignKey('type.id'))
-
+    type1 = db.relationship("Type", foreign_keys=[type1_id]) 
+    type2 = db.relationship("Type", foreign_keys=[type2_id]) 
 
     def __iter__(self):
         yield 'ndex', self.ndex
@@ -31,6 +32,5 @@ class Pokemon(db.Model):
         yield 'sp_attack', self.sp_attack
         yield 'sp_defense', self.sp_defense
         yield 'speed', self.speed
-        yield 'type1', Type.query.get(self.type1_id).name
-        if self.type2_id:
-            yield 'type2', Type.query.get(self.type2_id).name
+        yield 'type1', self.type1.name
+        yield 'type2', self.type2.name if self.type2_id else ''
