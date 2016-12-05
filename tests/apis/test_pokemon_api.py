@@ -9,21 +9,21 @@ class TestPokemonApi(BaseTestCase):
 
 
     def setUp(self):
-        PokemonFactory.create_batch(1)
+        PokemonFactory.create_batch(10)
 
 
     def tearDown(self):
         Pokemon.query.delete()
 
 
-    def test_api_should_return_1_pokemon(self):
+    def test_api_should_return_10_pokemon(self):
         response = self.client.get('/api/pokemon/')
-        self.assertEqual(len(response.json['data']), 1)
+        self.assertEqual(len(response.json['data']), 10)
 
 
     def test_each_pokemon_in_json_have_all_fields(self):
         response = self.client.get("/api/pokemon/")
         for pokemon in response.json['data']:
-            fields = ['ndex', 'name', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2']
+            fields = ['ndex', 'name', 'forme', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2']
             self.assertTrue(set(fields).issubset(pokemon))
-            self.assertEqual(len(pokemon), 11)
+            self.assertEqual(len(pokemon), 12)

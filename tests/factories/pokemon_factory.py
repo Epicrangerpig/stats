@@ -16,6 +16,7 @@ class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
         sqlalchemy_session = db.session
     
     name = faker.name()
+    forme = faker.name()
     ndex = randint(1, 900)
     attack = randint(1, 200)
     defense = randint(1, 200)

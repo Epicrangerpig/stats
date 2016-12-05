@@ -16,6 +16,7 @@ class LoadPokemon(Command):
             pokemon = Pokemon()
             pokemon.ndex = row['ndex']
             pokemon.name = row['species']
+            pokemon.forme = row['forme']
             pokemon.attack = row['attack']
             pokemon.defense = row['defense']
             pokemon.sp_attack = row['spattack']

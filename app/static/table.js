@@ -4,6 +4,7 @@ $(document).ready(function() {
         "aoColumns": [
           { "mData": "ndex" },
           { "mData": "name" },
+          { "mData": "forme" },
           { "mData": "total" },
           { "mData": "hp" },
           { "mData": "attack" },
@@ -14,13 +15,5 @@ $(document).ready(function() {
           { "mData": "type1" },
           { "mData": "type2" }
         ],
-        "aoColumnDefs": [{
-            "aTargets": [9],
-            "mData": function (source, type, val) {
-            if (source.type2 === undefined) {
-                val = source.type2;
-                return;
-            }
-        }}]
     });
 });

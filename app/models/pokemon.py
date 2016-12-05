@@ -10,6 +10,7 @@ class Pokemon(db.Model):
     id = Column(Integer, primary_key=True)
     ndex = Column(Integer)
     name = Column(String)
+    forme = Column(String)
     total = Column(Integer)
     hp = Column(Integer)
     attack = Column(Integer)
@@ -25,6 +26,7 @@ class Pokemon(db.Model):
     def __iter__(self):
         yield 'ndex', self.ndex
         yield 'name', self.name
+        yield 'forme', self.forme
         yield 'total', self.total
         yield 'hp', self.hp
         yield 'attack', self.attack
