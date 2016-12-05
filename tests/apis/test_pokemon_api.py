@@ -3,8 +3,6 @@ from app.models.pokemon import Pokemon
 from app.models.type import Type
 from factories.pokemon_factory import PokemonFactory
 from scripts.load_types import LoadTypes
-import validictory
-import json
 
 
 class TestPokemonApi(BaseTestCase):
