@@ -23,7 +23,7 @@ class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
     sp_attack = randint(1, 200)
     sp_defense = randint(1, 200)
     hp = randint(1, 200)
-    total = randint(1, 200)
     speed = randint(1, 200)
+    total = attack + defense + sp_attack + sp_defense + hp + speed
     type1 = factory.SubFactory(TypeFactory)
     type2 = factory.SubFactory(TypeFactory)

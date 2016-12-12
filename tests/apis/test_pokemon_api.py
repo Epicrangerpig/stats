@@ -27,3 +27,10 @@ class TestPokemonApi(BaseTestCase):
             fields = ['ndex', 'name', 'forme', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2']
             self.assertTrue(set(fields).issubset(pokemon))
             self.assertEqual(len(pokemon), 12)
+    
+
+    def test_pokemon_total_should_be_sum_of_other_stats(self):
+        response = self.client.get("/api/pokemon/")
+        for pokemon in response.json['data']:
+            total = pokemon['attack'] + pokemon['defense'] + pokemon['sp_attack'] + pokemon['sp_defense'] + pokemon['hp'] + pokemon['speed']
+            self.assertEqual(total, pokemon['total'])
