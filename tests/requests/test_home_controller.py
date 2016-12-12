@@ -5,4 +5,9 @@ class TestHomeController(BaseTestCase):
 
     def test_home_path_should_be_ok(self):
         response = self.client.get('/')
+        self.assert_200(response)    
+
+
+    def test_compare_path_should_be_ok(self):
+        response = self.client.get('/compare')
         self.assert_200(response)

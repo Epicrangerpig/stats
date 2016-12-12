@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#pokemon').DataTable({
         "sAjaxSource": "/api/pokemon",
+        "pageLength": "20",
         "aoColumns": [
           { "mData": "ndex", 'sTitle': 'Dex number' },
           { "mData": "forme", 'sTitle': 'Name' },
