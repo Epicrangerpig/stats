@@ -10,3 +10,9 @@ blueprint = Blueprint('pokemon_api', __name__, url_prefix='/api/pokemon')
 def json():
     pokemon = db.session.query(Pokemon).all()
     return jsonify(data=[dict(x) for x in pokemon])
+
+
+@blueprint.route('/<pokemon_id>')
+def get_pokemon(pokemon_id):
+    pokemon = Pokemon.query.get(pokemon_id)
+    return jsonify(dict(pokemon))
