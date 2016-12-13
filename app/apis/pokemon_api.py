@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models.pokemon import Pokemon
 from app import db
 
@@ -12,7 +12,11 @@ def json():
     return jsonify(data=[dict(x) for x in pokemon])
 
 
-@blueprint.route('/<pokemon_id>')
-def get_pokemon(pokemon_id):
-    pokemon = Pokemon.query.get(pokemon_id)
-    return jsonify(dict(pokemon))
+@blueprint.route('/get')
+def get_pokemon():
+    pokemon_ids = request.args.getlist('data[]', type=int)
+    pokemon_list = []
+    for pokemon_id in pokemon_ids:
+        pokemon = Pokemon.query.get(pokemon_id)
+        pokemon_list.append(pokemon)
+    return jsonify(data=[dict(x) for x in pokemon_list])
