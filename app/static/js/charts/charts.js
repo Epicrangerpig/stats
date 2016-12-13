@@ -60,4 +60,22 @@ $(function() {
             }
         });
     });
+
+    $('#rand-button').click(function() {
+        var nPokemon = $('select').find('option').length,
+            i = 0,
+            j = 0;
+        while (i == j) {
+            i = Math.floor(Math.random() * nPokemon)
+            j = Math.floor(Math.random() * nPokemon)
+        }
+        var pokemonList = [$('select').find('option')[i].value, $('select').find('option')[j].value];
+        $.ajax({
+            url: '/api/pokemon/get',
+            data: {'data': pokemonList},
+            success: function(result) {
+                draw(result.data);
+            }
+        });
+    });
 });

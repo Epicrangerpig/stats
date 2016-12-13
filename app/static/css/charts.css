@@ -5,3 +5,7 @@
 .select2-container--default {
     margin-bottom: 30px !important;
 }
+
+#rand-button {
+    margin-top: 20px;
+}
