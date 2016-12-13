@@ -9,3 +9,18 @@
 #rand-button {
     margin-top: 20px;
 }
+
+#selected-pokemon {
+    text-align: center;
+}
+
+#selected-pokemon img {
+    width: 200px;
+    height: 200px;
+}
+
+#selected-pokemon span.vs {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 20px;
+}

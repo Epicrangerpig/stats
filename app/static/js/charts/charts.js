@@ -40,7 +40,36 @@ var draw = function(pokemonList) {
         .draw()
 };
 
+var addPokemonSprites = function(pokemonList) {
+    $('#selected-pokemon').empty();
+    $.each(pokemonList, function(i, pokemon) {
+        var sprite = $($.parseHTML('<img></img>'));
+        sprite
+            .attr('src', 'https://img.pokemondb.net/sprites/x-y/normal/' + pokemon.name.toLowerCase() + '.png')
+            .attr('alt', pokemon.name)
+            .attr('title', pokemon.name);
+        $('#selected-pokemon').append(sprite);
+        if (i < pokemonList.length-1) {
+            var vs = $($.parseHTML('<span class="vs">vs.</span>'));
+            $('#selected-pokemon').append(vs);
+        }
+    });
+};
+
+var getPokemonByIds = function(pokemonList) {
+    $.ajax({
+        url: '/api/pokemon/get',
+        data: {'data': pokemonList},
+        success: function(result) {
+            addPokemonSprites(result.data);
+            draw(result.data);
+        }
+    });
+};
+
 $(function() {
+    $(this).scrollTop(0);
+    
     $('select').select2({
         width: '80%',
         placeholder: 'Choose Pokémon for comparison'
@@ -51,14 +80,7 @@ $(function() {
         $.each($('select').val(), function(i, id) {
             selectedPokemon.splice(0, 0, id);
         });
-
-        $.ajax({
-            url: '/api/pokemon/get',
-            data: {'data': selectedPokemon},
-            success: function(result) {
-                draw(result.data);
-            }
-        });
+        getPokemonByIds(selectedPokemon);
     });
 
     $('#rand-button').click(function() {
@@ -70,12 +92,6 @@ $(function() {
             j = Math.floor(Math.random() * nPokemon)
         }
         var pokemonList = [$('select').find('option')[i].value, $('select').find('option')[j].value];
-        $.ajax({
-            url: '/api/pokemon/get',
-            data: {'data': pokemonList},
-            success: function(result) {
-                draw(result.data);
-            }
-        });
+        getPokemonByIds(pokemonList);
     });
 });
