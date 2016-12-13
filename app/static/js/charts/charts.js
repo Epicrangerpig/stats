@@ -3,13 +3,13 @@ var draw = function(pokemonList) {
 
     var data = [];
     $.each(pokemonList, function(i, pokemon) {
-        data.splice(0, 0, {'stat': 'attack', 'name': pokemon['name'], 'value': pokemon['attack']});
-        data.splice(0, 0, {'stat': 'defense', 'name': pokemon['name'], 'value': pokemon['defense']});
-        data.splice(0, 0, {'stat': 'sp_attack', 'name': pokemon['name'], 'value': pokemon['sp_attack']});
-        data.splice(0, 0, {'stat': 'sp_defense', 'name': pokemon['name'], 'value': pokemon['sp_defense']});
-        data.splice(0, 0, {'stat': 'speed', 'name': pokemon['name'], 'value': pokemon['speed']});
-        data.splice(0, 0, {'stat': 'hp', 'name': pokemon['name'], 'value': pokemon['hp']});
-        data.splice(0, 0, {'stat': 'total', 'name': pokemon['name'], 'value': pokemon['total']});
+        data.splice(0, 0, {'stat': 'Attack', 'name': pokemon['name'], 'value': pokemon['attack']});
+        data.splice(0, 0, {'stat': 'Defense', 'name': pokemon['name'], 'value': pokemon['defense']});
+        data.splice(0, 0, {'stat': 'Sp. Attack', 'name': pokemon['name'], 'value': pokemon['sp_attack']});
+        data.splice(0, 0, {'stat': 'Sp. Defense', 'name': pokemon['name'], 'value': pokemon['sp_defense']});
+        data.splice(0, 0, {'stat': 'Speed', 'name': pokemon['name'], 'value': pokemon['speed']});
+        data.splice(0, 0, {'stat': 'HP', 'name': pokemon['name'], 'value': pokemon['hp']});
+        data.splice(0, 0, {'stat': 'Total', 'name': pokemon['name'], 'value': pokemon['total']});
     });
 
     var visualization = d3plus.viz()
@@ -19,7 +19,8 @@ var draw = function(pokemonList) {
         .id("name")
         .x({
             'value': 'stat', 
-            'grid': false
+            'grid': false,
+            'ticks': false
         })
         .y({
             'value': 'value', 
@@ -30,11 +31,12 @@ var draw = function(pokemonList) {
                 'color': '#fff'
             }
         })
-        .background('#f2f2f2')
+        .background('#231F20')
         .color("name")
         .legend({
-            'size': 80
+            'size': 90
         })
+        .font({"family": "Merrywheater", "color": "#fff", "size": "15"})
         .draw()
 };
 
