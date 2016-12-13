@@ -42,7 +42,7 @@ var draw = function(pokemonList) {
 
 $(function() {
     $('select').select2({
-        width: '50%',
+        width: '80%',
         placeholder: 'Choose Pokémon for comparison'
     });
 
