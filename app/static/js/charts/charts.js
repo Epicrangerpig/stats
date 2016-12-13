@@ -45,7 +45,7 @@ var addPokemonSprites = function(pokemonList) {
     $.each(pokemonList, function(i, pokemon) {
         var sprite = $($.parseHTML('<img></img>'));
         sprite
-            .attr('src', 'https://img.pokemondb.net/sprites/x-y/normal/' + pokemon.name.toLowerCase() + '.png')
+            .attr('src', '//play.pokemonshowdown.com/sprites/bw/' + pokemon.name.toLowerCase() + '.png')
             .attr('alt', pokemon.name)
             .attr('title', pokemon.name);
         $('#selected-pokemon').append(sprite);
