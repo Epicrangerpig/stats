@@ -31,12 +31,12 @@ var draw = function(pokemonList) {
                 'color': '#fff'
             }
         })
-        .background('#231F20')
+        .background('#fff')
         .color("name")
         .legend({
             'size': 90
         })
-        .font({"family": "Merrywheater", "color": "#fff", "size": "15"})
+        .font({"family": "Merrywheater", "color": "#231F20", "size": "15"})
         .draw()
 };
 
