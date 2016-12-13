@@ -24,6 +24,7 @@ class Pokemon(db.Model):
     type2 = db.relationship("Type", foreign_keys=[type2_id]) 
 
     def __iter__(self):
+        yield 'id', self.id
         yield 'ndex', self.ndex
         yield 'name', self.name
         yield 'forme', self.forme

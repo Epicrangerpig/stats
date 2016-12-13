@@ -1,5 +1,35 @@
 {% include "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="/static/css/charts.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+{% endblock %}
+
 {% block content %}
-Hello
+<div class="container">
+<h1>Choose Pokémon for comparison:</h1>
+<div class="row">
+    <div class="col-md-12">
+        <select multiple>
+        {% for option in select %}
+            <option value="{{ option.id }}">{{ option.name }}</option>
+        {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-12">
+        <button class="btn btn-lg" id="compare-button">Compare</button>
+    </div>
+    <div class="col-md-offset-2 col-md-8">
+        <div id="viz">
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js" async></script>
+<script src="/static/js/charts/charts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 {% endblock %}
