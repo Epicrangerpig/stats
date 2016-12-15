@@ -3,13 +3,13 @@ var draw = function(pokemonList) {
 
     var data = [];
     $.each(pokemonList, function(i, pokemon) {
-        data.splice(0, 0, {'stat': 'Attack', 'name': pokemon['name'], 'value': pokemon['attack']});
-        data.splice(0, 0, {'stat': 'Defense', 'name': pokemon['name'], 'value': pokemon['defense']});
-        data.splice(0, 0, {'stat': 'Sp. Attack', 'name': pokemon['name'], 'value': pokemon['sp_attack']});
-        data.splice(0, 0, {'stat': 'Sp. Defense', 'name': pokemon['name'], 'value': pokemon['sp_defense']});
-        data.splice(0, 0, {'stat': 'Speed', 'name': pokemon['name'], 'value': pokemon['speed']});
-        data.splice(0, 0, {'stat': 'HP', 'name': pokemon['name'], 'value': pokemon['hp']});
-        data.splice(0, 0, {'stat': 'Total', 'name': pokemon['name'], 'value': pokemon['total']});
+        data.splice(0, 0, {'stat': 'Attack', 'name': pokemon['forme'], 'value': pokemon['attack']});
+        data.splice(0, 0, {'stat': 'Defense', 'name': pokemon['forme'], 'value': pokemon['defense']});
+        data.splice(0, 0, {'stat': 'Sp. Attack', 'name': pokemon['forme'], 'value': pokemon['sp_attack']});
+        data.splice(0, 0, {'stat': 'Sp. Defense', 'name': pokemon['forme'], 'value': pokemon['sp_defense']});
+        data.splice(0, 0, {'stat': 'Speed', 'name': pokemon['forme'], 'value': pokemon['speed']});
+        data.splice(0, 0, {'stat': 'HP', 'name': pokemon['forme'], 'value': pokemon['hp']});
+        data.splice(0, 0, {'stat': 'Total', 'name': pokemon['forme'], 'value': pokemon['total']});
     });
 
     var visualization = d3plus.viz()
@@ -44,10 +44,22 @@ var addPokemonSprites = function(pokemonList) {
     $('#selected-pokemon').empty();
     $.each(pokemonList, function(i, pokemon) {
         var sprite = $($.parseHTML('<img></img>'));
+        var name = pokemon.name;
+        var forme = pokemon.forme;
+        if (forme.search(' [(]Mega') != -1) {
+            name += '-mega';
+            if (forme == 'Charizard (Mega Charizard X)')
+                name += 'x';
+            else if (forme == 'Charizard (Mega Charizard Y)')
+                name += 'y';
+        }
+        if (forme.search(' [(]Alola Form') != -1) {
+            name += '-alola';
+        }
         sprite
-            .attr('src', '//play.pokemonshowdown.com/sprites/bw/' + pokemon.name.toLowerCase() + '.png')
+            .attr('src', '//play.pokemonshowdown.com/sprites/bw/' + name.toLowerCase() + '.png')
             .attr('alt', pokemon.name)
-            .attr('title', pokemon.name);
+            .attr('title', pokemon.forme);
         $('#selected-pokemon').append(sprite);
         if (i < pokemonList.length-1) {
             var vs = $($.parseHTML('<span class="vs">vs.</span>'));
