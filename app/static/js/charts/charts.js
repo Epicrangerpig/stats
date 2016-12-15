@@ -57,7 +57,10 @@ var addPokemonSprites = function(pokemonList) {
 };
 
 var getPokemonByIds = function(pokemonList) {
-    $('#result').css('padding', '100px 0 40px 0');
+    if (pokemonList.length > 7) 
+        $('#result').css('padding', '100px 0 40px 0');
+    else
+        $('#result').css('padding', '100px 0 60px 0');
     $('#result > .container').removeClass('hidden');
     $.ajax({
         url: '/api/pokemon/get',
@@ -74,7 +77,7 @@ $(function() {
 
     $(this).scroll(function () {
         var $nav = $("nav");
-        $nav.toggleClass('scrolled', $(this).scrollTop() > 880);
+        $nav.toggleClass('scrolled', $(this).scrollTop() > 860);
     });    
     
     $('select').select2({
@@ -100,5 +103,25 @@ $(function() {
         }
         var pokemonList = [$('select').find('option')[i].value, $('select').find('option')[j].value];
         getPokemonByIds(pokemonList);
+    });
+
+    $('.eevee').click(function() {
+        var eeveelutions = []
+        $.each($('select > option'), function(i, option) {
+            switch ($(option).html().toLowerCase()) {
+                case 'eevee':
+                case 'vaporeon':
+                case 'jolteon':
+                case 'flareon':
+                case 'espeon':
+                case 'umbreon':
+                case 'leafeon':
+                case 'glaceon':
+                case 'sylveon':
+                    eeveelutions.splice(0, 0, $(option).attr('value'));
+                    break;
+            }
+        });
+        getPokemonByIds(eeveelutions);
     });
 });

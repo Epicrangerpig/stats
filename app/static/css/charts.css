@@ -16,12 +16,19 @@
 }
 
 #selected-pokemon img {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
 }
 
 #selected-pokemon span.vs {
     font-family: 'Open Sans';
     font-weight: 700;
     font-size: 20px;
+}
+
+.eevee {
+    width: 100px;
+    height: 100px;
+    float: right;
+    margin-top: 40px;
 }
