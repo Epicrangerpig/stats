@@ -69,6 +69,11 @@ var getPokemonByIds = function(pokemonList) {
 
 $(function() {
     $(this).scrollTop(0);
+
+    $(this).scroll(function () {
+        var $nav = $("nav");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > 880);
+    });    
     
     $('select').select2({
         width: '80%',
