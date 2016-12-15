@@ -513,3 +513,24 @@ body {
   color: #fff;
   transition: background-color 200ms linear;
 }
+
+@media (max-width:767px) {
+  .navbar-default .navbar-header .navbar-brand {
+    color: #231F20;
+  }
+
+  .navbar-default .nav > li > a, 
+  .navbar-default .nav > li > a:focus {
+    color: #231F20;
+  }
+
+  header .header-content {
+    padding-top: 170px;
+    padding-bottom: 200px;
+  }
+
+  header .header-content .header-content-inner {
+    margin-top: 300px;
+  }
+
+}

@@ -50,7 +50,8 @@ var draw = function(pokemonList) {
         .axes({
             'background': {
                 'color': '#fff'
-            }
+            },
+            'ticks': false
         })
         .background('#fff')
         .color(function(d) {
@@ -68,7 +69,13 @@ var addPokemonSprites = function(pokemonList) {
     $('#selected-pokemon').empty();
     $.each(pokemonList, function(i, pokemon) {
         var sprite = $($.parseHTML('<img></img>'));
-        var name = pokemon.name;
+        
+        var name = pokemon.name.replace(new RegExp('é', 'g'), 'e').replace(new RegExp('[^a-zA-z]', 'g'), '').toLowerCase();
+        if (encodeURI(pokemon.name) == 'Nidoran%E2%99%82') 
+            name += 'm';
+        else if (encodeURI(pokemon.name) == 'Nidoran%E2%99%80') 
+            name += 'f';
+
         var forme = pokemon.forme;
         if (forme.search(' [(]Mega') != -1) {
             name += '-mega';
@@ -81,23 +88,20 @@ var addPokemonSprites = function(pokemonList) {
             name += '-alola';
         }
         sprite
-            .attr('src', '//play.pokemonshowdown.com/sprites/bw/' + name.toLowerCase() + '.png')
+            .attr('src', '//play.pokemonshowdown.com/sprites/bw/' + name + '.png')
             .attr('alt', pokemon.name)
             .attr('title', pokemon.forme);
-        $('#selected-pokemon').append(sprite);
-        if (i < pokemonList.length-1) {
-            var vs = $($.parseHTML('<span class="vs">vs.</span>'));
-            $('#selected-pokemon').append(vs);
-        }
+        var figure = $($.parseHTML('<figure></figure>'));
+        var figcaption = $($.parseHTML('<figcaption></figure>'));
+        figure.append(sprite);
+        figure.append(figcaption.html(pokemon.forme));
+        $('#selected-pokemon').append(figure);
     });
 };
 
 var getPokemonByIds = function(pokemonList) {
-    if (pokemonList.length > 7) 
-        $('#result').css('padding', '40px 0 40px 0');
-    else
-        $('#result').css('padding', '100px 0 110px 0');
-    $('#result > .container').removeClass('hidden');
+    $('#result').css('padding', '100px 0 70px 0');
+    $('#result > .container-fluid').removeClass('hidden');
     $.ajax({
         url: '/api/pokemon/get',
         data: {'data': pokemonList},
@@ -118,10 +122,12 @@ $(function() {
     
     $('select').select2({
         width: '80%',
-        placeholder: 'Choose Pokémon for comparison'
+        placeholder: 'Choose Pokémon'
     });
 
     $('#compare-button').click(function() {
+        if (!$('select').val().length)
+            return;
         var selectedPokemon = [];
         $.each($('select').val(), function(i, id) {
             selectedPokemon.splice(0, 0, id);
