@@ -100,7 +100,7 @@ var addPokemonSprites = function(pokemonList) {
 };
 
 var getPokemonByIds = function(pokemonList) {
-    $('#result').css('padding', '100px 0 70px 0');
+    // $('#result').css('padding', '100px 0 70px 0');
     $('#result > .container-fluid').removeClass('hidden');
     $.ajax({
         url: '/api/pokemon/get',
@@ -114,6 +114,7 @@ var getPokemonByIds = function(pokemonList) {
 
 $(function() {
     $(this).scrollTop(0);
+    $(this).find('body').css('background-color', '#77AC98');
 
     $(this).scroll(function () {
         var $nav = $("nav");

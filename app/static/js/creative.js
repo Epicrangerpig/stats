@@ -5,7 +5,7 @@
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top - 50)
+            scrollTop: ($($anchor.attr('href')).offset().top - 25)
         }, 1250, 'easeInOutExpo');
         event.preventDefault();
     });
@@ -13,7 +13,7 @@
     // Highlight the top nav as scrolling occurs
     $('body').scrollspy({
         target: '.navbar-fixed-top',
-        offset: 100
+        offset: 120
     });
 
     // Closes the Responsive Menu on Menu Item Click
@@ -24,7 +24,7 @@
     // Offset for Main Navigation
     $('#mainNav').affix({
         offset: {
-            top: 1000
+            top: $(document).width() < 768 ? $(document).height() - 190 :  $(document).height() - 380
         }
     })
 
