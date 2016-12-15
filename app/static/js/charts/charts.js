@@ -3,14 +3,35 @@ var draw = function(pokemonList) {
 
     var data = [];
     $.each(pokemonList, function(i, pokemon) {
-        data.splice(0, 0, {'stat': 'Attack', 'name': pokemon['forme'], 'value': pokemon['attack']});
-        data.splice(0, 0, {'stat': 'Defense', 'name': pokemon['forme'], 'value': pokemon['defense']});
-        data.splice(0, 0, {'stat': 'Sp. Attack', 'name': pokemon['forme'], 'value': pokemon['sp_attack']});
-        data.splice(0, 0, {'stat': 'Sp. Defense', 'name': pokemon['forme'], 'value': pokemon['sp_defense']});
-        data.splice(0, 0, {'stat': 'Speed', 'name': pokemon['forme'], 'value': pokemon['speed']});
-        data.splice(0, 0, {'stat': 'HP', 'name': pokemon['forme'], 'value': pokemon['hp']});
-        data.splice(0, 0, {'stat': 'Total', 'name': pokemon['forme'], 'value': pokemon['total']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Attack', 'name': pokemon['forme'], 'value': pokemon['attack']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Defense', 'name': pokemon['forme'], 'value': pokemon['defense']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Attack', 'name': pokemon['forme'], 'value': pokemon['sp_attack']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Defense', 'name': pokemon['forme'], 'value': pokemon['sp_defense']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Speed', 'name': pokemon['forme'], 'value': pokemon['speed']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'HP', 'name': pokemon['forme'], 'value': pokemon['hp']});
+        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Total', 'name': pokemon['forme'], 'value': pokemon['total']});
     });
+
+    var typeColor = {
+        'normal': '#A8A77A',
+        'fire': '#EE8130',
+        'water': '#6390F0',
+        'electric': '#F7D02C',
+        'grass': '#7AC74C',
+        'ice': '#96D9D6',
+        'fighting': '#C22E28',
+        'poison': '#A33EA1',
+        'ground': '#E2BF65',
+        'flying': '#A98FF3',
+        'psychic': '#F95587',
+        'bug': '#A6B91A',
+        'rock': '#B6A136',
+        'ghost': '#735797',
+        'dragon': '#6F35FC',
+        'dark': '#705746',
+        'steel': '#B7B7CE',
+        'fairy': '#D685AD',
+    };
 
     var visualization = d3plus.viz()
         .container("#viz")
@@ -32,7 +53,10 @@ var draw = function(pokemonList) {
             }
         })
         .background('#fff')
-        .color("name")
+        .color(function(d) {
+            var color = typeColor[d.type];
+            return d3plus.color.lighter(color, 0.00005*d.total);
+        })
         .legend({
             'size': 90
         })
