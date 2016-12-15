@@ -58,9 +58,9 @@ var addPokemonSprites = function(pokemonList) {
 
 var getPokemonByIds = function(pokemonList) {
     if (pokemonList.length > 7) 
-        $('#result').css('padding', '100px 0 40px 0');
+        $('#result').css('padding', '40px 0 40px 0');
     else
-        $('#result').css('padding', '100px 0 60px 0');
+        $('#result').css('padding', '100px 0 110px 0');
     $('#result > .container').removeClass('hidden');
     $.ajax({
         url: '/api/pokemon/get',
