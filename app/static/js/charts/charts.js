@@ -57,6 +57,8 @@ var addPokemonSprites = function(pokemonList) {
 };
 
 var getPokemonByIds = function(pokemonList) {
+    $('#result').css('padding', '100px 0 40px 0');
+    $('#result > .container').removeClass('hidden');
     $.ajax({
         url: '/api/pokemon/get',
         data: {'data': pokemonList},
