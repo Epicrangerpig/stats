@@ -21,13 +21,13 @@ class TestPokemonApi(BaseTestCase):
         self.assertEqual(len(response.json['data']), 10)
 
 
-    def test_each_pokemon_in_json_have_all_fields(self):
+    def test_each_pokemon_in_json_should_have_13_attrs(self):
         response = self.client.get("/api/pokemon/")
         for pokemon in response.json['data']:
             fields = ['ndex', 'name', 'forme', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2', 'id']
             self.assertTrue(set(fields).issubset(pokemon))
             self.assertEqual(len(pokemon), 13)
-    
+
 
     def test_pokemon_total_should_be_sum_of_other_stats(self):
         response = self.client.get("/api/pokemon/")
