@@ -1,14 +1,42 @@
 var draw = function(pokemonList) {
     $('#viz').empty();
+    $('#radar-viz-wrapper').empty();
 
     var data = [];
+    $('#radar-viz-wrapper').css('height', pokemonList.length * 320);
     $.each(pokemonList, function(i, pokemon) {
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Attack', 'name': pokemon['forme'], 'value': pokemon['attack']});
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Defense', 'name': pokemon['forme'], 'value': pokemon['defense']});
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Attack', 'name': pokemon['forme'], 'value': pokemon['sp_attack']});
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Defense', 'name': pokemon['forme'], 'value': pokemon['sp_defense']});
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Speed', 'name': pokemon['forme'], 'value': pokemon['speed']});
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'HP', 'name': pokemon['forme'], 'value': pokemon['hp']});
+        var pokemonData = [];
+        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Attack', 'name': pokemon['forme'], 'value': pokemon['attack']});
+        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Defense', 'name': pokemon['forme'], 'value': pokemon['defense']});
+        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Attack', 'name': pokemon['forme'], 'value': pokemon['sp_attack']});
+        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Defense', 'name': pokemon['forme'], 'value': pokemon['sp_defense']});
+        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Speed', 'name': pokemon['forme'], 'value': pokemon['speed']});
+        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'HP', 'name': pokemon['forme'], 'value': pokemon['hp']});
+        
+        var viz = $($.parseHTML('<div></div>'));
+        var row = $($.parseHTML('<div></div>'));
+        row.addClass('row');
+        viz.attr('id', 'pokemon'+pokemon['id']);
+        viz.addClass('col-md-12 radar-viz');
+        var title = $($.parseHTML('<h4></h4>'));
+        title.addClass('radar-title text-center')
+            .html(pokemon['forme']);
+        row.append(title);
+        row.append(viz);
+        row.append($($.parseHTML('<hr>')));
+        $('#radar-viz-wrapper').append(row);
+        var visualization = d3plus.viz()
+            .container("#"+viz.attr('id'))
+            .data(pokemonData)
+            .id(["name", "stat"])
+            .size("value")
+            .color(function(d) {
+                var color = typeColor[d.type];
+                    return d3plus.color.lighter(color, 0.00005*d.total);
+            })
+            .type("radar")
+            .draw();
+        data = data.concat(pokemonData);
         data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Total', 'name': pokemon['forme'], 'value': pokemon['total']});
     });
 

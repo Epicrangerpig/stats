@@ -1,12 +1,7 @@
 html,
 body {
-  height: 100%;
-  width: 100%;
-}
-
-
-header {
-    margin-top: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 #viz {
@@ -39,7 +34,6 @@ header {
 }
 
 @media (max-width:767px) {
-
     .eevee {
         padding: 10px;
     }
@@ -52,6 +46,7 @@ header {
         width: 90px;
         height: 90px;
     }
+
 }
 
 figure {
@@ -61,8 +56,6 @@ figure {
 figure figcaption {
     font-family: 'Open Sans';
 }
-
-/* ------------------- */
 
 body {
     position: relative;
@@ -76,50 +69,50 @@ body {
 }
 
 .bg-light hr {
-  border-color: #231F20;
+    border-color: #231F20;
 }
 
 hr {
-  border-color: #231F20;
-  border-width: 3px;
-  max-width: 50px;
+    border-color: #231F20;
+    border-width: 3px;
+    max-width: 50px;
 }
 
 p {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .no-padding {
-  padding: 0;
+    padding: 0;
 }
 
 .navbar-default {
-  background-color: #fff;
-  -webkit-transition: all 0.35s;
-  -moz-transition: all 0.35s;
-  transition: all 0.35s;
+    background-color: #fff;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
 }
 
 .navbar-default .navbar-header .navbar-brand {
-  color: #231F20;
-  font-weight: 700;
-  text-transform: uppercase;
+    color: #231F20;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .navbar-default .nav > li > a {
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 13px;
-  color: #231F20;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 13px;
+    color: #231F20;
 }
 
 .navbar-default .navbar-header .navbar-toggle {
-  font-weight: 700;
-  font-size: 12px;
-  color: #222222;
-  text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    color: #222222;
+    text-transform: uppercase;
 }
 
 .navbar-default.affix {
@@ -133,7 +126,6 @@ p {
 
 .navbar-default.affix .navbar-header .navbar-brand:hover,
 .navbar-default.affix .navbar-header .navbar-brand:focus {
-    
 }
 
 .navbar-default.affix .nav > li > a,
@@ -144,45 +136,42 @@ p {
     color: white;
 }
 
-
 header {
-  width: 100%;
-  min-height: auto;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  background-position: center;
-  text-align: center;
-  color: white;
-}
-
-body {
+    margin-top: 80px;
+    width: 100%;
+    min-height: auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
 }
 
 header .header-content {
-  text-align: center;
-  padding: 0px 15px 100px;
-  width: 100%;
+    text-align: center;
+    padding: 0px 15px 100px;
+    width: 100%;
 }
 
 header .header-content .header-content-inner h1 {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 30px;
 }
 
 header .header-content .header-content-inner hr {
-  margin: 30px auto;
+    margin: 30px auto;
 }
 
 .btn-primary {
-  color: white;
-  background-color: #231F20;
-  border-color: #231F20;
-  -webkit-transition: all 0.35s;
-  -moz-transition: all 0.35s;
-  transition: all 0.35s;
+    color: white;
+    background-color: #231F20;
+    border-color: #231F20;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
 }
 
 .btn-primary:hover,
@@ -191,43 +180,40 @@ header .header-content .header-content-inner hr {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  color: white;
-  background-color: #110F10;
-  border-color: #ed431f;
+    color: white;
+    background-color: #110F10;
+    border-color: #ed431f;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background-image: none;
+    background-image: none;
 }
 
 .btn {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-  border: none;
-  border-radius: 300px;
-  font-weight: 700;
-  text-transform: uppercase;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    border: none;
+    border-radius: 300px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .btn-xl {
-  padding: 15px 30px;
+    padding: 15px 30px;
 }
 
-
+.radar-viz {
+    height: 300px;
+}
 
 @media (min-width:768px) {
-
-  header .header-content .header-content-inner h1 {
-    font-size: 50px;
-  }
+    header .header-content .header-content-inner h1 {
+        font-size: 50px;
+    }
 
 }
 
-@media (max-width:767px) {
-  
-    body {
-}
-
-
+.radar-title {
+    margin-top: 80px;
 }
