@@ -29,7 +29,7 @@ class TestPokemonApi(BaseTestCase):
             self.assertEqual(len(pokemon), 13)
 
 
-    def test_pokemon_stats_should_have_right_types(self):
+    def test_pokemon_attrs_should_have_right_variable_types(self):
         response = self.client.get("/api/pokemon/")
         for pokemon in response.json['data']:
             self.assertTrue(type(pokemon['ndex']) is int)
