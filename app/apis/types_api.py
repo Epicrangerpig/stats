@@ -8,4 +8,4 @@ blueprint = Blueprint('types_api', __name__, url_prefix='/api/types')
 @blueprint.route('/')
 def list():
     types = db.session.query(Type).all()
-    return jsonify(data=[dict(x) for x in types])
+    return jsonify(columns=['name'], data=[type.name for type in types])

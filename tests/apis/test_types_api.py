@@ -18,3 +18,11 @@ class TestTypesApi(BaseTestCase):
     def test_api_should_return_10_types(self):
         response = self.client.get('/api/types/')
         self.assertEqual(len(response.json['data']), 10)
+
+
+    def test_json_should_have_columns_and_data_only(self):
+        response = self.client.get('/api/types/')
+        self.assertEqual(len(response.json), 2)
+        self.assertIn('columns', response.json)
+        self.assertIn('data', response.json)
+
