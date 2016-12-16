@@ -3,43 +3,8 @@ var draw = function(pokemonList) {
     $('#radar-viz-wrapper').empty();
 
     var data = [];
-    $('#radar-viz-wrapper').css('height', pokemonList.length * 320);
-    $.each(pokemonList, function(i, pokemon) {
-        var pokemonData = [];
-        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Attack', 'name': pokemon['forme'], 'value': pokemon['attack']});
-        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Defense', 'name': pokemon['forme'], 'value': pokemon['defense']});
-        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Attack', 'name': pokemon['forme'], 'value': pokemon['sp_attack']});
-        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Sp. Defense', 'name': pokemon['forme'], 'value': pokemon['sp_defense']});
-        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Speed', 'name': pokemon['forme'], 'value': pokemon['speed']});
-        pokemonData.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'HP', 'name': pokemon['forme'], 'value': pokemon['hp']});
-        
-        var viz = $($.parseHTML('<div></div>'));
-        var row = $($.parseHTML('<div></div>'));
-        row.addClass('row');
-        viz.attr('id', 'pokemon'+pokemon['id']);
-        viz.addClass('col-md-12 radar-viz');
-        var title = $($.parseHTML('<h4></h4>'));
-        title.addClass('radar-title text-center')
-            .html(pokemon['forme']);
-        row.append(title);
-        row.append(viz);
-        row.append($($.parseHTML('<hr>')));
-        $('#radar-viz-wrapper').append(row);
-        var visualization = d3plus.viz()
-            .container("#"+viz.attr('id'))
-            .data(pokemonData)
-            .id(["name", "stat"])
-            .size("value")
-            .color(function(d) {
-                var color = typeColor[d.type];
-                    return d3plus.color.lighter(color, 0.00005*d.total);
-            })
-            .type("radar")
-            .draw();
-        data = data.concat(pokemonData);
-        data.splice(0, 0, {'total': pokemon['total'], 'type': pokemon['type1'], 'stat': 'Total', 'name': pokemon['forme'], 'value': pokemon['total']});
-    });
-
+    $('#radar-viz-wrapper').css('height', pokemonList.length * 460);
+    
     var typeColor = {
         'normal': '#A8A77A',
         'fire': '#EE8130',
@@ -58,14 +23,63 @@ var draw = function(pokemonList) {
         'dragon': '#6F35FC',
         'dark': '#705746',
         'steel': '#B7B7CE',
-        'fairy': '#D685AD',
+        'fairy': '#D685AD'
     };
 
+    $.each(pokemonList, function(i, pokemon) {
+        var thisData = [],
+        stats = [['Attack', 'attack'], ['Defense', 'defense'], ['Sp. Attack', 'sp_attack'], ['Sp. Defense', 'sp_defense'], ['Speed', 'speed'], ['HP', 'hp']];
+        $.each(stats, function(i, stat) {
+            thisData.splice(0, 0, {
+                'total': pokemon['total'], 
+                'type': pokemon['type1'], 
+                'name': pokemon['forme'],
+                'stat': stat[0], 
+                'value': pokemon[stat[1]]
+            });
+        });
+
+        var viz = $($.parseHTML('<div></div>')),
+            row = $($.parseHTML('<div></div>')),
+            title = $($.parseHTML('<h4></h4>')),
+            hr = $($.parseHTML('<hr>'));
+
+        row.addClass('row');
+        viz.attr('id', 'pokemon' + pokemon['id'])
+            addClass('col-md-12 radar-viz');
+        title.addClass('radar-title text-center')
+            .html(pokemon['forme']);
+        row.append(title);
+        row.append(viz);
+        row.append(hr);
+        $('#radar-viz-wrapper').append(row);
+        
+        var visualization = d3plus.viz()
+            .container('#' + viz.attr('id'))
+            .data(thisData)
+            .id(['name', 'stat'])
+            .size('value')
+            .color(function(d) {
+                return d3plus.color.lighter(typeColor[d.type], 0.00005 * d.total);
+            })
+            .type('radar')
+            .draw();
+        
+        data = data.concat(thisData);
+        data.splice(0, 0, {
+            'total': pokemon['total'], 
+            'type': pokemon['type1'], 
+            'stat': 'Total', 
+            'name': pokemon['forme'], 
+            'value': pokemon['total']
+        });
+    });
+
     var visualization = d3plus.viz()
-        .container("#viz")
+        .container('#viz')
         .data(data)
-        .type("bar")
-        .id("name")
+        .type('bar')
+        .id('name')
         .x({
             'value': 'stat', 
             'grid': false,
@@ -89,22 +103,25 @@ var draw = function(pokemonList) {
         .legend({
             'size': 90
         })
-        .font({"family": "Merrywheater", "color": "#231F20", "size": "15"})
-        .draw()
+        .font({'family': 'Merrywheater', 'color': '#231F20', 'size': '15'})
+        .draw();
 };
 
-var addPokemonSprites = function(pokemonList) {
+var addSprites = function(list) {
     $('#selected-pokemon').empty();
-    $.each(pokemonList, function(i, pokemon) {
-        var sprite = $($.parseHTML('<img></img>'));
-        
-        var name = pokemon.name.replace(new RegExp('é', 'g'), 'e').replace(new RegExp('[^a-zA-z]', 'g'), '').toLowerCase();
-        if (encodeURI(pokemon.name) == 'Nidoran%E2%99%82') 
+
+    $.each(list, function(i, item) {
+        var sprite = $($.parseHTML('<img></img>')),
+            figure = $($.parseHTML('<figure></figure>')),
+            figcaption = $($.parseHTML('<figcaption></figcaption>')),
+            name = item.name.replace(new RegExp('é', 'g'), 'e').replace(new RegExp('[^a-zA-z]', 'g'), '').toLowerCase(),
+            forme = item.forme;
+
+        if (encodeURI(item.name) == 'Nidoran%E2%99%82') 
             name += 'm';
-        else if (encodeURI(pokemon.name) == 'Nidoran%E2%99%80') 
+        else if (encodeURI(item.name) == 'Nidoran%E2%99%80') 
             name += 'f';
 
-        var forme = pokemon.forme;
         if (forme.search(' [(]Mega') != -1) {
             name += '-mega';
             if (forme == 'Charizard (Mega Charizard X)')
@@ -112,29 +129,29 @@ var addPokemonSprites = function(pokemonList) {
             else if (forme == 'Charizard (Mega Charizard Y)')
                 name += 'y';
         }
+
         if (forme.search(' [(]Alola Form') != -1) {
             name += '-alola';
         }
-        sprite
-            .attr('src', '//play.pokemonshowdown.com/sprites/bw/' + name + '.png')
-            .attr('alt', pokemon.name)
-            .attr('title', pokemon.forme);
-        var figure = $($.parseHTML('<figure></figure>'));
-        var figcaption = $($.parseHTML('<figcaption></figure>'));
+
+        sprite.attr('src', '//play.pokemonshowdown.com/sprites/bw/' + name + '.png')
+            .attr('alt', item.name)
+            .attr('title', item.forme);
+
         figure.append(sprite);
-        figure.append(figcaption.html(pokemon.forme));
+        figure.append(figcaption.html(item.forme));
         $('#selected-pokemon').append(figure);
     });
 };
 
-var getPokemonByIds = function(pokemonList) {
-    // $('#result').css('padding', '100px 0 70px 0');
+var getPokemon = function(list) {
     $('#result > .container-fluid').removeClass('hidden');
+
     $.ajax({
         url: '/api/pokemon/get',
-        data: {'data': pokemonList},
+        data: {'data': list},
         success: function(result) {
-            addPokemonSprites(result.data);
+            addSprites(result.data);
             draw(result.data);
         }
     });
@@ -143,7 +160,6 @@ var getPokemonByIds = function(pokemonList) {
 $(function() {
     $(this).scrollTop(0);
     $(this).find('body').css('background-color', '#77AC98');
-
     $(this).scroll(function () {
         var $nav = $("nav");
         $nav.toggleClass('scrolled', $(this).scrollTop() > 860);
@@ -157,27 +173,28 @@ $(function() {
     $('#compare-button').click(function() {
         if (!$('select').val().length)
             return;
-        var selectedPokemon = [];
-        $.each($('select').val(), function(i, id) {
-            selectedPokemon.splice(0, 0, id);
+
+        var selected = [];
+        $.each($('select').val(), function(i, val) {
+            selected.splice(0, 0, val);
         });
-        getPokemonByIds(selectedPokemon);
+        getPokemon(selected);
     });
 
     $('#rand-button').click(function() {
-        var nPokemon = $('select').find('option').length,
-            i = 0,
-            j = 0;
+        var n = $('select').find('option').length,
+            i = 0, j = 0;
         while (i == j) {
-            i = Math.floor(Math.random() * nPokemon)
-            j = Math.floor(Math.random() * nPokemon)
+            i = Math.floor(Math.random() * n);
+            j = Math.floor(Math.random() * n);
         }
-        var pokemonList = [$('select').find('option')[i].value, $('select').find('option')[j].value];
-        getPokemonByIds(pokemonList);
+
+        var list = [$('select').find('option')[i].value, $('select').find('option')[j].value];
+        getPokemon(list);
     });
 
     $('.eevee').click(function() {
-        var eeveelutions = []
+        var list = [];
         $.each($('select > option'), function(i, option) {
             switch ($(option).html().toLowerCase()) {
                 case 'eevee':
@@ -189,10 +206,10 @@ $(function() {
                 case 'leafeon':
                 case 'glaceon':
                 case 'sylveon':
-                    eeveelutions.splice(0, 0, $(option).attr('value'));
+                    list.splice(0, 0, $(option).attr('value'));
                     break;
             }
         });
-        getPokemonByIds(eeveelutions);
+        getPokemon(list);
     });
 });

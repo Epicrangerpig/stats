@@ -25,4 +25,3 @@ class TestTypesApi(BaseTestCase):
         self.assertEqual(len(response.json), 2)
         self.assertIn('columns', response.json)
         self.assertIn('data', response.json)
-
