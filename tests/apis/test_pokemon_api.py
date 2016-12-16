@@ -29,6 +29,24 @@ class TestPokemonApi(BaseTestCase):
             self.assertEqual(len(pokemon), 13)
 
 
+    def test_pokemon_stats_should_have_right_types(self):
+        response = self.client.get("/api/pokemon/")
+        for pokemon in response.json['data']:
+            self.assertTrue(type(pokemon['ndex']) is int)
+            self.assertTrue(type(pokemon['name']) in [str, unicode])
+            self.assertTrue(type(pokemon['forme']) in [str, unicode])
+            self.assertTrue(type(pokemon['total']) is int)
+            self.assertTrue(type(pokemon['hp']) is int)
+            self.assertTrue(type(pokemon['attack']) is int)
+            self.assertTrue(type(pokemon['defense']) is int)
+            self.assertTrue(type(pokemon['sp_attack']) is int)
+            self.assertTrue(type(pokemon['sp_defense']) is int)
+            self.assertTrue(type(pokemon['speed']) is int)
+            self.assertTrue(type(pokemon['type1']) in [str, unicode])
+            self.assertTrue(type(pokemon['type2']) in [str, unicode])
+            self.assertTrue(type(pokemon['id']) is int)
+
+
     def test_pokemon_total_should_be_sum_of_other_stats(self):
         response = self.client.get("/api/pokemon/")
         for pokemon in response.json['data']:
