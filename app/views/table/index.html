@@ -1,11 +1,14 @@
 {% include "base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="/static/css/table.css">
+<link rel="stylesheet" href="/static/css/dataTables.bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/2.1.0/css/dataTables.fixedHeader.min.css">
 {% endblock css %}
 
 {% block content %}
-<div class="container-fluid">
-    <table id="pokemon" class="display table table-striped" cellspacing="0" width="100%">
+<div class="container-fluid table-wrapper">
+    <table id="pokemon" class="display table table-striped table-responsive table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>ndex</th>
@@ -28,5 +31,6 @@
 {% block js %}
 <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/2.1.0/js/dataTables.fixedHeader.min.js"></script>
 <script src="/static/js/table.js"></script>
 {% endblock %}

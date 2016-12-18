@@ -12,6 +12,26 @@
     {% endblock %}
 </head>
 <body>
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">Pokémon Stats</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/table">Table</a>
+                </li>
+                 <li>
+                    <a class="page-scroll" target="_blank" href="https://github.com/luisccf/stats">Github</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {% block content %}
 {% endblock %}
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
