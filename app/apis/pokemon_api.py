@@ -12,9 +12,9 @@ def json():
     return jsonify(data=[dict(x) for x in pokemon])
 
 
-@blueprint.route('/get')
+@blueprint.route('/get', methods=['POST'])
 def get_pokemon():
-    pokemon_ids = request.args.getlist('data[]', type=int)
+    pokemon_ids = request.form.getlist('ids[]', type=int)
     pokemon_list = []
     for pokemon_id in pokemon_ids:
         pokemon = Pokemon.query.get(pokemon_id)

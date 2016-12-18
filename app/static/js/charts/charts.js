@@ -1,9 +1,9 @@
-var draw = function(pokemonList) {
+var draw = function(list) {
     $('#viz').empty();
     $('#radar-viz-wrapper').empty();
 
     var data = [];
-    $('#radar-viz-wrapper').css('height', pokemonList.length * 412);
+    $('#radar-viz-wrapper').css('height', list.length * 412);
     
     var typeColor = {
         'normal': '#A8A77A',
@@ -26,7 +26,7 @@ var draw = function(pokemonList) {
         'fairy': '#D685AD'
     };
 
-    $.each(pokemonList, function(i, pokemon) {
+    $.each(list, function(i, pokemon) {
         var thisData = [],
         stats = [['Attack', 'attack'], ['Defense', 'defense'], ['Sp. Attack', 'sp_attack'], ['Sp. Defense', 'sp_defense'], ['Speed', 'speed'], ['HP', 'hp']];
         $.each(stats, function(i, stat) {
@@ -149,7 +149,8 @@ var getPokemon = function(list) {
 
     $.ajax({
         url: '/api/pokemon/get',
-        data: {'data': list},
+        type: 'POST',
+        data: {'ids': list},
         success: function(result) {
             addSprites(result.data);
             draw(result.data);
