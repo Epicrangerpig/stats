@@ -8,7 +8,7 @@ class LoadTypes(Command):
     "Loads pokemon types"
 
     def run(self):
-    	types = ['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost',
+        types = ['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost',
              'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy']
 
         for i, name in enumerate(types):

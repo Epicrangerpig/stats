@@ -1,7 +1,7 @@
 import factory
 from app import db
 from app.models.pokemon import Pokemon
-from type_factory import TypeFactory
+from factories.type_factory import TypeFactory
 from faker import Faker
 from random import randint
 
