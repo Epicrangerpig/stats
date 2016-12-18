@@ -7,7 +7,7 @@ class Type(db.Model):
     __tablename__ = 'type'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(255))
     
 
     def __iter__(self):

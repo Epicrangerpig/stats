@@ -9,8 +9,8 @@ class Pokemon(db.Model):
 
     id = Column(Integer, primary_key=True)
     ndex = Column(Integer)
-    name = Column(String)
-    forme = Column(String)
+    name = Column(String(255))
+    forme = Column(String(255))
     total = Column(Integer)
     hp = Column(Integer)
     attack = Column(Integer)
