@@ -3,9 +3,9 @@ from app.controllers import home_controller
 from app.models.pokemon import Pokemon
 
 
-blueprint = Blueprint('charts_controller', __name__, url_prefix='/charts')
+blueprint = Blueprint('charts_controller', __name__, url_prefix='/')
 
-@blueprint.route('/')
+@blueprint.route('')
 def index():
     pokemon = [dict(x) for x in Pokemon.query.all()]
     return render_template('charts/index.html', select=pokemon)
