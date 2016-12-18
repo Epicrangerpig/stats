@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-from app.controllers import home_controller
 from app.models.pokemon import Pokemon
 
 
