@@ -1,4 +1,4 @@
-from os import getcwd, path
+from os import getcwd, path, getenv
 
 
 class Config(object):
@@ -8,7 +8,7 @@ class Config(object):
 
 
 class Production(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = getenv('DATABASE_URL', '')
 
 
 class Development(Config):
