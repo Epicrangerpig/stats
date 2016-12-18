@@ -6,9 +6,9 @@ from load_types import LoadTypes
 from load_pokemon import LoadPokemon
 
 
-class LoadDatabase(Command):
+class LoadData(Command):
 
-    "Loads database"
+    "Loads data"
 
     def run(self):
         Pokemon.query.delete()
