@@ -69,4 +69,7 @@ p {
         height: 90px;
     }
 
+    #viz {
+        height: 400px;
+    }
 }
