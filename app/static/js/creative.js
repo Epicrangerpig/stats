@@ -24,7 +24,7 @@
     // Offset for Main Navigation
     $('#mainNav').affix({
         offset: {
-            top: $(document).width() < 768 ? $(document).height() - 190 :  $(document).height() - 380
+            top: $('#result').outerHeight()
         }
     })
 
