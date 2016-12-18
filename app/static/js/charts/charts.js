@@ -3,7 +3,7 @@ var draw = function(pokemonList) {
     $('#radar-viz-wrapper').empty();
 
     var data = [];
-    $('#radar-viz-wrapper').css('height', pokemonList.length * 460);
+    $('#radar-viz-wrapper').css('height', pokemonList.length * 412);
     
     var typeColor = {
         'normal': '#A8A77A',
@@ -46,12 +46,12 @@ var draw = function(pokemonList) {
 
         row.addClass('row');
         viz.attr('id', 'pokemon' + pokemon['id'])
-            addClass('col-md-12 radar-viz');
+            .addClass('col-md-12 radar-viz');
         title.addClass('radar-title text-center')
             .html(pokemon['forme']);
+        row.append(hr);
         row.append(title);
         row.append(viz);
-        row.append(hr);
         $('#radar-viz-wrapper').append(row);
         
         var visualization = d3plus.viz()
@@ -103,7 +103,7 @@ var draw = function(pokemonList) {
         .legend({
             'size': 90
         })
-        .font({'family': 'Merrywheater', 'color': '#231F20', 'size': '15'})
+        .font({'family': 'Helvetica', 'color': '#231F20', 'size': '15'})
         .draw();
 };
 

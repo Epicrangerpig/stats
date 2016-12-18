@@ -33,22 +33,6 @@ body {
     margin-top: 40px;
 }
 
-@media (max-width:767px) {
-    .eevee {
-        padding: 10px;
-    }
-
-    #result {
-        padding: 20px 0 70px !important;
-    }
-
-    #selected-pokemon img {
-        width: 90px;
-        height: 90px;
-    }
-
-}
-
 figure {
     display: inline-block;
 }
@@ -58,7 +42,6 @@ figure figcaption {
 }
 
 body {
-    position: relative;
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -68,14 +51,14 @@ body {
     padding-bottom: 70px;
 }
 
-.bg-light hr {
-    border-color: #231F20;
-}
-
 hr {
     border-color: #231F20;
     border-width: 3px;
     max-width: 50px;
+}
+
+#radar-viz-wrapper hr {
+    margin: 40px auto;
 }
 
 p {
@@ -214,6 +197,18 @@ header .header-content .header-content-inner hr {
 
 }
 
-.radar-title {
-    margin-top: 80px;
+@media (max-width:767px) {
+    .eevee {
+        padding: 10px;
+    }
+
+    #result {
+        padding: 20px 0 70px !important;
+    }
+
+    #selected-pokemon img {
+        width: 90px;
+        height: 90px;
+    }
+
 }
