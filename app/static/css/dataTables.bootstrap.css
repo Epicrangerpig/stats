@@ -228,3 +228,21 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
     background-color: #333;
     border-color: #333;
 }
+
+@media (max-width: 768px) {
+    .pagination > li > a {
+        margin-top: 6px;
+    }
+
+    div.dataTables_wrapper div.dataTables_length,
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: left;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_paginate {
+        margin-left: -15px;
+    }
+}

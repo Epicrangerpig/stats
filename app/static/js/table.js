@@ -6,6 +6,7 @@ $(document).ready(function() {
             header: true,
             headerOffset: 50
         },
+        responsive: true,
         'aoColumns': [
             { 'mData': 'ndex', 'sTitle': 'Dex' },
             { 'mData': 'forme', 'sTitle': 'Name' },

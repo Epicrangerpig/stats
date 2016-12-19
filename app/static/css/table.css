@@ -9,6 +9,10 @@
     background-position: center;
 }
 
+.table-wrapper.table-responsive {
+    border: none;
+}
+
 .type {
     color: white;
     padding: 3px;
