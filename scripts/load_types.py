@@ -18,3 +18,4 @@ class LoadTypes(Command):
             db.session.add(type)
 
         db.session.commit()
+        print('Loaded {} types').format(len(types))

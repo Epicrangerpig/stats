@@ -13,4 +13,4 @@ class AbilityFactory(factory.alchemy.SQLAlchemyModelFactory):
         sqlalchemy_session = db.session
     
     name = faker.sentence(nb_words=1)
-    description = faker.sentence(nb_words=20)
+    description = faker.sentence(nb_words=10)

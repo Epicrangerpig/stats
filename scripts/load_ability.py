@@ -13,8 +13,9 @@ class LoadAbility(Command):
 
         for index, row in data_frame.iterrows():
             ability = Ability()
-            pokemon.ndex = row['ability']
-            pokemon.name = row['description']
+            ability.name = row['ability']
+            ability.description = row['description']
             db.session.add(ability)
 
         db.session.commit()
+        print('Loaded {} abilities').format(len(data_frame))
