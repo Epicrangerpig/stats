@@ -27,3 +27,7 @@ Then, run
 ```
 python manage.py loaddata
 ```
+### Run the application
+```
+python manage.py runserver
+```
