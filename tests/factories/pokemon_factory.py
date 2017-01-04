@@ -2,6 +2,7 @@ import factory
 from app import db
 from app.models.pokemon import Pokemon
 from factories.type_factory import TypeFactory
+from factories.ability_factory import AbilityFactory
 from faker import Faker
 from random import randint
 
@@ -27,3 +28,6 @@ class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
     total = attack + defense + sp_attack + sp_defense + hp + speed
     type1 = factory.SubFactory(TypeFactory)
     type2 = factory.SubFactory(TypeFactory)
+    ability1 = factory.SubFactory(AbilityFactory)
+    ability2 = factory.SubFactory(AbilityFactory)
+    hidden_ability = factory.SubFactory(AbilityFactory)

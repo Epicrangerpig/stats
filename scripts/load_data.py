@@ -17,5 +17,5 @@ class LoadData(Command):
         Type.query.delete()
         Ability.query.delete()
         LoadTypes().run()
-        LoadPokemon().run()
         LoadAbility().run()
+        LoadPokemon().run()

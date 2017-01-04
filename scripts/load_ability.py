@@ -13,7 +13,7 @@ class LoadAbility(Command):
 
         for index, row in data_frame.iterrows():
             ability = Ability()
-            ability.name = row['ability']
+            ability.name = row['ability'].lower()
             ability.description = row['description']
             db.session.add(ability)
 
