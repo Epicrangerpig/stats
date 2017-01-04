@@ -24,7 +24,7 @@
     // Offset for Main Navigation
     $('#mainNav').affix({
         offset: {
-            top: $('#result').outerHeight()
+            top: $('header').height() + parseInt($('header').css('margin-top').split('px')[0])
         }
     })
 
