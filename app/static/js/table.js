@@ -52,42 +52,7 @@ $(document).ready(function() {
                             return content[0].outerHTML;
                         }
                     }
-                ],
-                initComplete: function() {
-                    var table = this;
-                    
-                    var label = $($.parseHTML('<label></label>')),
-                        select = $($.parseHTML('<select></select>')),
-                        types = ['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 
-                                'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy'];
-
-                        var defaultOption = $($.parseHTML('<option></option>'));
-                        defaultOption.html('all types')
-                            .attr('selected', 'selected')
-                            .attr('value', 0);
-                        select.append(defaultOption);
-
-                        $.each(types, function(i, type) {
-                            var option = $($.parseHTML('<option></option>'));
-                            option.attr('value', type)
-                                .html(type);
-                            select.append(option);
-                        });
-
-                        select.on('change', function() {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                            );
-                            debugger
-                            table.api().columns([9, 10]).search( val ? '^'+val+'$' : '', true, false)
-                                    .draw();
-
-                        })
-
-                        select.addClass('input-sm form-control');
-                        label.append(select);
-                        $('#pokemon_filter').append(select);
-                }
+                ]
             });
         }
     });
