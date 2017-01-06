@@ -17,10 +17,8 @@ or simply
 nosetests
 ```
 ### Load data into database from csv files
-To automatically create the relations, run the following Flask-Migrate commands
+First, in `config.py`, set the development `SQLALCHEMY_DATABASE_URI` variable. Then, to automatically create the relations, run the following Flask-Migrate command
 ```
-python manage.py db init
-python manage.py db migrate
 python manage.py db upgrade
 ```
 Then, run
