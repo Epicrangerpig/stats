@@ -24,27 +24,9 @@ class TestPokemonApi(BaseTestCase):
     def test_each_pokemon_in_json_should_have_13_attrs(self):
         response = self.client.get("/api/pokemon/")
         for pokemon in response.json['data']:
-            fields = ['ndex', 'name', 'forme', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2', 'id']
+            fields = ['ndex', 'name', 'forme', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2', 'id', 'ability1', 'ability2', 'hidden_ability']
             self.assertTrue(set(fields).issubset(pokemon))
-            self.assertEqual(len(pokemon), 13)
-
-
-    def test_pokemon_attrs_should_have_right_variable_types(self):
-        response = self.client.get("/api/pokemon/")
-        for pokemon in response.json['data']:
-            self.assertTrue(type(pokemon['ndex']) is int)
-            self.assertTrue(type(pokemon['name']) in [str, unicode])
-            self.assertTrue(type(pokemon['forme']) in [str, unicode])
-            self.assertTrue(type(pokemon['total']) is int)
-            self.assertTrue(type(pokemon['hp']) is int)
-            self.assertTrue(type(pokemon['attack']) is int)
-            self.assertTrue(type(pokemon['defense']) is int)
-            self.assertTrue(type(pokemon['sp_attack']) is int)
-            self.assertTrue(type(pokemon['sp_defense']) is int)
-            self.assertTrue(type(pokemon['speed']) is int)
-            self.assertTrue(type(pokemon['type1']) in [str, unicode])
-            self.assertTrue(type(pokemon['type2']) in [str, unicode])
-            self.assertTrue(type(pokemon['id']) is int)
+            self.assertEqual(len(pokemon), 16)
 
 
     def test_pokemon_total_should_be_sum_of_other_stats(self):

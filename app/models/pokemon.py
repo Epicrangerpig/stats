@@ -45,6 +45,6 @@ class Pokemon(db.Model):
         yield 'speed', self.speed
         yield 'type1', self.type1.name
         yield 'type2', self.type2.name if self.type2_id else ''
-        # yield 'ability1', self.ability1.name if self.ability1_id else ''
-        # yield 'ability2', self.ability2.name if self.ability2_id else ''
-        # yield 'hidden_ability', self.hidden_ability.name if self.hidden_ability_id else ''
+        yield 'ability1', self.ability1.name if self.ability1_id else ''
+        yield 'ability2', self.ability2.name if self.ability2_id else ''
+        yield 'hidden_ability', self.hidden_ability.name if self.hidden_ability_id else ''
