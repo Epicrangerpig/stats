@@ -114,7 +114,7 @@ var addSprites = function(list) {
         var sprite = $($.parseHTML('<img></img>')),
             figure = $($.parseHTML('<figure></figure>')),
             figcaption = $($.parseHTML('<figcaption></figcaption>')),
-            name = item.name.replace(new RegExp('é', 'g'), 'e').replace(new RegExp('[^a-zA-z]', 'g'), '').toLowerCase(),
+            name = item.name.replace(new RegExp('é', 'g'), 'e').replace(new RegExp('[^a-zA-z2]', 'g'), '').toLowerCase(),
             forme = item.forme;
 
         if (encodeURI(item.name) == 'Nidoran%E2%99%82') 
