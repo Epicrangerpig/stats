@@ -50,6 +50,9 @@ $(document).ready(function() {
                                 });
                             }
                             return content[0].outerHTML;
+                        },
+                        'createdCell': function(td) {
+                            $(td).tooltip();
                         }
                     }
                 ]
