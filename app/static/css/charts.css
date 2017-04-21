@@ -17,6 +17,12 @@ body {
     color: #fff;
 }
 
+#clear-button {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 10px;
+}
+
 #selected-pokemon {
     text-align: center;
     margin-bottom: 20px;

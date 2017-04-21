@@ -194,6 +194,11 @@ $(function() {
         getPokemon(list);
     });
 
+    $('#clear-button').click(function() {
+        $('select').val('')
+            .trigger('change');
+    });
+
     $('.eevee').click(function() {
         var list = [];
         $.each($('select > option'), function(i, option) {
