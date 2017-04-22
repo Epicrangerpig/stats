@@ -1,0 +1,30 @@
+{
+  "name": "stats",
+  "version": "1.0.0",
+  "description": "With virtualenvwrapper installed, run ``` mkvirtualenv <name> ``` ### Requirements ``` pip install -r requirements.txt ``` ### Test ``` python manage.py test ``` or simply ``` nosetests ``` ### Load data into database from csv files First, in `config.py`, set the development `SQLALCHEMY_DATABASE_URI` variable. Then, to automatically create the relations, run the following Flask-Migrate command ``` python manage.py db upgrade ``` Then, run ``` python manage.py loaddata ``` ### Run the application ``` python manage.py runserver ```",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js" : "for i in app/static/es6/*.js; do babel $i --out-file app/static/js/$(basename $i); done"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisccf/stats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisccf/stats/issues"
+  },
+  "homepage": "https://github.com/luisccf/stats#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "babel": { 
+    "presets": ["es2015"] 
+  }
+}
