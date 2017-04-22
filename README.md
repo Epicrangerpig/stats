@@ -29,3 +29,13 @@ python manage.py loaddata
 ```
 python manage.py runserver
 ```
+### ECMAScript 6 (ES6) JavaScript
+Files written in ES6 are stored in `app/static/es6/`. Using `npm` and `babel`, they are transpiled into ordinary JavaScript code and stored in `app/static/js/`.
+```
+npm init
+npm install
+npm run js
+```
+
+`npm run js` is defined in `package.json`.
+
