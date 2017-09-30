@@ -5,12 +5,13 @@ from factories.type_factory import TypeFactory
 from factories.ability_factory import AbilityFactory
 from faker import Faker
 from random import randint
+from base_factory import BaseFactory
 
 
 faker = Faker()
 
 
-class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
+class PokemonFactory(BaseFactory):
 
     class Meta:
         model = Pokemon

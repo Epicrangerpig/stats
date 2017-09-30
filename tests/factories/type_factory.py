@@ -2,11 +2,12 @@ import factory
 from app import db
 from app.models.type import Type
 from faker import Faker
+from base_factory import BaseFactory
+
 
 faker = Faker()
 
-
-class TypeFactory(factory.alchemy.SQLAlchemyModelFactory):
+class TypeFactory(BaseFactory):
 
     class Meta:
         model = Type
