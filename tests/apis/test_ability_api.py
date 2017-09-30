@@ -8,17 +8,16 @@ class TestAbilityApi(BaseTestCase):
 
 
     def setUp(self):
+        super(TestAbilityApi, self).setUp()
         AbilityFactory.create_batch(10)
-
 
     def tearDown(self):
         Ability.query.delete()
-
+        super(TestAbilityApi, self).tearDown()
 
     def test_api_should_return_10_abilities(self):
         response = self.client.get('/api/ability/')
         self.assertEqual(len(response.json['data']), 10)
-
 
     def test_json_should_have_columns_and_data_only(self):
         response = self.client.get('/api/ability/')
