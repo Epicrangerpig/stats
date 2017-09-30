@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "js" : "for i in app/static/es6/*.js; do babel $i --out-file app/static/js/$(basename $i); done"
+    "js": "for i in app/static/es6/*.js; do babel $i --out-file app/static/js/$(basename $i); done"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,12 @@
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1"
   },
-  "babel": { 
-    "presets": ["es2015"] 
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.16.2"
   }
 }

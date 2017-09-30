@@ -1,8 +1,30 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pokemon: []
+    }
+  }
+
+  getPokemonList() {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/pokemon`)
+    .then((res) => { 
+      this.setState({pokemon: res.data.data}); 
+    })
+    .catch((err) => { 
+      console.log(err); 
+    })
+  }
+
+  componentDidMount() {
+    this.getPokemonList()
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,7 +33,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {
+            this.state.pokemon.map((pokemon) => {
+              return <p>{ pokemon.name }</p>
+            })
+          }
         </p>
       </div>
     );
