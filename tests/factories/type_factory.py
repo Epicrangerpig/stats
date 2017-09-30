@@ -2,7 +2,7 @@ import factory
 from app import db
 from app.models.type import Type
 from faker import Faker
-from base_factory import BaseFactory
+from tests.factories import BaseFactory
 
 
 faker = Faker()

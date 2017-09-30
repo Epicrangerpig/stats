@@ -3,9 +3,9 @@ from app.models.type import Type
 from app.models.pokemon import Pokemon
 from app.models.ability import Ability
 from app import db
-from load_types import LoadTypes
-from load_pokemon import LoadPokemon
-from load_ability import LoadAbility
+from scripts.load_types import LoadTypes
+from scripts.load_pokemon import LoadPokemon
+from scripts.load_ability import LoadAbility
 
 
 class LoadData(Command):

@@ -5,7 +5,7 @@ from factories.type_factory import TypeFactory
 from factories.ability_factory import AbilityFactory
 from faker import Faker
 from random import randint
-from base_factory import BaseFactory
+from tests.factories import BaseFactory
 
 
 faker = Faker()

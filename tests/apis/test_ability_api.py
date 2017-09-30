@@ -8,12 +8,12 @@ class TestAbilityApi(BaseTestCase):
 
 
     def setUp(self):
-        super(TestAbilityApi, self).setUp()
+        super().setUp()
         AbilityFactory.create_batch(10)
 
     def tearDown(self):
         Ability.query.delete()
-        super(TestAbilityApi, self).tearDown()
+        super().tearDown()
 
     def test_api_should_return_10_abilities(self):
         response = self.client.get('/api/ability/')

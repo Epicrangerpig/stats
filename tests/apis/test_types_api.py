@@ -8,12 +8,12 @@ class TestTypesApi(BaseTestCase):
 
 
     def setUp(self):
-        super(TestTypesApi, self).setUp()
+        super().setUp()
         TypeFactory.create_batch(10)
 
     def tearDown(self):
         Type.query.delete()
-        super(TestTypesApi, self).tearDown()
+        super().tearDown()
 
     def test_api_should_return_10_types(self):
         response = self.client.get('/api/types/')
