@@ -4,6 +4,7 @@ import './App.css'
 import axios from 'axios'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import 'react-select/dist/react-select.css'
 
 class App extends Component {
   constructor(props) {
@@ -11,13 +12,14 @@ class App extends Component {
     this.state = {
       pokemon: [],
       selectedOption: null,
+      loadingPokemon: true,
     }
   }
 
   getPokemonList() {
     axios.get(`${process.env.REACT_APP_API_URL}/api/pokemon`)
     .then((res) => { 
-      this.setState({pokemon: res.data.data})
+      this.setState({pokemon: res.data.data, loadingPokemon: false})
     })
     .catch((err) => { 
       console.log(err)
@@ -28,19 +30,16 @@ class App extends Component {
     this.getPokemonList()
   }
 
-  logChange(value) {
-    this.setState({selectedOption: value})
-  }
-
   render() {
     return (
       <div className="container">
-        <div className="row justify-content-md-center">
+        <div className="row justify-content-center">
           <div className="col-md-6">
             <h1 style={{ marginTop: 80 }}>Select pokémon</h1>
             <Select
               multi={ true }
               value={ this.state.selectedOption }
+              isLoading={this.state.loadingPokemon}
               options={
                 this.state.pokemon.map(pokemon => {
                   return {
@@ -49,9 +48,12 @@ class App extends Component {
                     }
                 })
               }
-              onChange={this.logChange.bind(this)}
+              onChange={value => this.setState({selectedOption: value})}
             />
           </div>
+        </div>
+        <div className="row justify-content-center">
+            <button className="btn btn-secondary" style={{ marginTop: 20 }}>compare</button>
         </div>
       </div>
     );
