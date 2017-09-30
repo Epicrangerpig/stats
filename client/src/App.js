@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import 'react-select/dist/react-select.css';
 import './App.css';
 import About from './components/About';
+import Comparison from './Comparison';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       pokemon: [],
-      selectedOption: null,
+      selectedOptions: null,
       loadingPokemon: true,
     };
   }
@@ -43,7 +45,7 @@ class App extends Component {
                   <h1>Select pokémon</h1>
                   <Select
                     multi
-                    value={this.state.selectedOption}
+                    value={this.state.selectedOptions}
                     isLoading={this.state.loadingPokemon}
                     options={
                       this.state.pokemon.map(pokemon =>
@@ -53,10 +55,16 @@ class App extends Component {
                         }),
                       )
                     }
-                    onChange={value => this.setState({ selectedOption: value })}
+                    onChange={value => this.setState({ selectedOptions: value })}
                   />                  
                   <div className="row justify-content-center">
-                    <button className="btn btn-secondary" style={{ marginTop: 20 }}>compare</button>
+                    <Link
+                      className="btn btn-secondary" 
+                      style={{ marginTop: 20 }}
+                      to={this.state.selectedOptions ? "/compare/" + this.state.selectedOptions.map(option => option.value).join(',') : ''}
+                    >
+                      compare
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -64,6 +72,7 @@ class App extends Component {
           />
 
           <Route exact path="/about" component={About} />
+          <Route exact path="/compare/:ids" component={Comparison}/>
         </Switch>
       </div>
     );
