@@ -57,7 +57,6 @@ class TestPokemonApi(BaseTestCase):
         for stat, value in pokemon_data.items():
             self.assertEqual(value, pokemon_dict.get(stat))
 
-
     def test_get_with_id_should_return_only_one_pokemon(self):
         pokemon_list = PokemonFactory.create_batch(5)
         pokemon = pokemon_list[0]

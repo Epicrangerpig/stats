@@ -6,7 +6,6 @@ from scripts.load_ability import LoadAbility
 
 class TestAbilityApi(BaseTestCase):
 
-
     def setUp(self):
         super().setUp()
         AbilityFactory.create_batch(10)
