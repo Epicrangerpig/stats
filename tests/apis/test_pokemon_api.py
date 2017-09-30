@@ -1,36 +1,81 @@
 from test_base import BaseTestCase
-from app.models.pokemon import Pokemon
-from app.models.type import Type
 from factories.pokemon_factory import PokemonFactory
-from scripts.load_types import LoadTypes
+import json
 
+
+STATS = [
+    'id', 'ndex', 'name', 'forme', 'total', 'hp', 'attack', 
+    'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2',
+    'ability1', 'ability2', 'hidden_ability'
+]
 
 class TestPokemonApi(BaseTestCase):
 
+    def __get_data(self, response):
+        data = json.loads(response.data.decode())
+        data = data.get('data')
+        return data
 
-    def setUp(self):
-        PokemonFactory.create_batch(10)
-
-
-    def tearDown(self):
-        Pokemon.query.delete()
-
-
-    def test_api_should_return_10_pokemon(self):
+    def test_should_return_ok_to_pokemon_path(self):
         response = self.client.get('/api/pokemon/')
-        self.assertEqual(len(response.json['data']), 10)
+        self.assert_200(response)
+
+    def test_get_should_return_empty_list(self):
+        response = self.client.get('/api/pokemon/')
+        data = self.__get_data(response)
+        self.assertEqual(len(data), 0)
+
+    def test_get_should_return_five_pokemon(self):
+        PokemonFactory.create_batch(5)
+
+        response = self.client.get('/api/pokemon/')
+        data = self.__get_data(response)
+        self.assertEqual(len(data), 5)
+
+    def test_get_json_format(self):
+        PokemonFactory()
+
+        response = self.client.get('/api/pokemon/')
+        data = self.__get_data(response)
+
+        pokemon_data = data[0]
+
+        self.assertEqual(len(pokemon_data.keys()), len(STATS))
+        
+        for stat in STATS:
+            self.assertIn(stat, pokemon_data)
+
+    def test_get_json_values_match_pokemon_values(self):
+        pokemon = PokemonFactory()
+
+        response = self.client.get('/api/pokemon/')
+        data = self.__get_data(response)
+
+        pokemon_data = data[0]
+        pokemon_dict = dict(pokemon)
+
+        for stat, value in pokemon_data.items():
+            self.assertEqual(value, pokemon_dict.get(stat))
 
 
-    def test_each_pokemon_in_json_should_have_13_attrs(self):
-        response = self.client.get("/api/pokemon/")
-        for pokemon in response.json['data']:
-            fields = ['ndex', 'name', 'forme', 'total', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'type1', 'type2', 'id', 'ability1', 'ability2', 'hidden_ability']
-            self.assertTrue(set(fields).issubset(pokemon))
-            self.assertEqual(len(pokemon), 16)
+    def test_get_with_id_should_return_only_one_pokemon(self):
+        pokemon_list = PokemonFactory.create_batch(5)
+        pokemon = pokemon_list[0]
 
+        response = self.client.get('/api/pokemon/{}'.format(pokemon.id))
+        data = self.__get_data(response)
 
-    def test_pokemon_total_should_be_sum_of_other_stats(self):
-        response = self.client.get("/api/pokemon/")
-        for pokemon in response.json['data']:
-            total = pokemon['attack'] + pokemon['defense'] + pokemon['sp_attack'] + pokemon['sp_defense'] + pokemon['hp'] + pokemon['speed']
-            self.assertEqual(total, pokemon['total'])
+        self.assertEqual(type(data), dict)
+        self.assertEqual(len(data), 16)
+
+    def test_get_with_id_json_format(self):
+        pokemon_list = PokemonFactory.create_batch(5)
+        pokemon = pokemon_list[0]
+
+        response = self.client.get('/api/pokemon/{}'.format(pokemon.id))
+        data = self.__get_data(response)
+
+        self.assertEqual(len(data.keys()), len(STATS))
+        
+        for stat in STATS:
+            self.assertIn(stat, data)

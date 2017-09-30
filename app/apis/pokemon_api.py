@@ -1,15 +1,20 @@
 from flask import Blueprint, jsonify, request
 from app.models.pokemon import Pokemon
-from app import db
 
 
 blueprint = Blueprint('pokemon_api', __name__, url_prefix='/api/pokemon')
 
 
 @blueprint.route('/')
-def json():
-    pokemon = db.session.query(Pokemon).all()
+def get():
+    pokemon = Pokemon.query.all()
     return jsonify(data=[dict(x) for x in pokemon])
+
+
+@blueprint.route('/<int:id>')
+def get_id(id):
+    pokemon = Pokemon.query.get(id)
+    return jsonify(data=dict(pokemon))
 
 
 @blueprint.route('/get', methods=['POST'])
