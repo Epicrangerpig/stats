@@ -18,4 +18,4 @@ class LoadAbility(Command):
             db.session.add(ability)
 
         db.session.commit()
-        print('Loaded {} abilities').format(len(data_frame))
+        print('Loaded {} abilities'.format(len(data_frame)))

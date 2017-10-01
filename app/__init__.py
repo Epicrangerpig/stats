@@ -2,7 +2,7 @@ from os import getenv, listdir, getcwd, path
 from importlib import import_module
 from re import sub
 from flask import Flask
-from flask.ext.runner import Manager
+from flask_runner import Manager
 from flask_sqlalchemy import SQLAlchemy
 from inflection import singularize
 from flask_migrate import Migrate

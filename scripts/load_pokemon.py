@@ -56,4 +56,4 @@ class LoadPokemon(Command):
             db.session.add(pokemon)
 
         db.session.commit()
-        print('Loaded {} pokemon').format(len(data_frame))
+        print('Loaded {} pokemon'.format(len(data_frame)))
