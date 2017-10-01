@@ -25,7 +25,7 @@ $(function () {
                 }, {
                     targets: [11, 12, 13],
                     render: function render(data, type, row) {
-                        var content = $.parseHTML('<span>${data}</span>');
+                        var content = $.parseHTML('<span>' + data + '</span>');
 
                         if (data.length > 0) {
                             $.each(abilities, function (i, ability) {

@@ -34,13 +34,13 @@ $(function() {
                     {
                         targets: [9, 10],
                         render: function(data, type, row) {
-                            return data.length ? '<span class="type ' + data + '">' + data + '</span>' : '';
+                            return data.length ? `<span class="type ${data}">${data}</span>` : '';
                         }
                     },
                     {
                         targets: [11, 12, 13],
                         render: function(data, type, row) {
-                            const content = $.parseHTML('<span>${data}</span>');
+                            const content = $.parseHTML(`<span>${data}</span>`);
                             
                             if (data.length > 0) {
                                 $.each(abilities, function(i, ability) {
