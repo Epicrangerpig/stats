@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import ReactHighcharts from 'react-highcharts';
+import ReactHighcharts from 'react-highcharts'
+import Spinner from 'react-spinkit'
 
 
 class Comparison extends Component {
@@ -47,9 +48,10 @@ class Comparison extends Component {
             series: this.state.data
         }
 
+
       return this.state.data ? 
         <ReactHighcharts config={config} /> : 
-        null
+        <Spinner name="pulse" style={{ width: 27 }} className="mx-auto" />
     }
 }
 
