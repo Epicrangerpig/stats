@@ -1,5 +1,5 @@
 from app import flask, db
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 import logging
 
 logging.getLogger('factory').setLevel(logging.WARN)
