@@ -12,7 +12,8 @@ class Comparison extends Component {
         this.stats = ['attack', 'sp_attack', 'defense', 'sp_defense', 'speed', 'hp', 'total']
         this.ids = this.props.match.params.ids.split(',')
         this.state = {
-            data: []
+            data: [],
+            colors: {},
         }
     }
 
@@ -21,18 +22,27 @@ class Comparison extends Component {
     }
 
     getData() {
-        const requests = this.ids.map(id => 
-            axios.get(`${process.env.REACT_APP_API_URL}/api/pokemon/${id}`)
+        const requests = [axios.get(`${process.env.REACT_APP_API_URL}/api/types`)].concat(
+            this.ids.map(id => 
+                axios.get(`${process.env.REACT_APP_API_URL}/api/pokemon/${id}`)
+            )
         )
 
         axios.all(requests)
             .then((responses) => {
-                const data = responses.map(response => ({
-                        name: response.data.data.forme,
-                        data: this.stats.map(stat => response.data.data[stat])
-                    }) 
+                let colors = {}
+                const types = responses[0].data.data
+                types.forEach(type =>
+                    colors[type.name] = type.color
                 )
 
+                const data = responses.splice(1).map(response => ({
+                        name: response.data.data.forme,
+                        data: this.stats.map(stat => response.data.data[stat]),
+                        color: colors[response.data.data.type1],
+                    }) 
+                )
+                console.log(data)
                 this.setState({ data })
             })
     }
@@ -42,15 +52,23 @@ class Comparison extends Component {
             chart: {
                 type: 'bar',
             },
+            title: {
+                text: 'Stats comparison',
+            },
             xAxis: {
                 categories: this.stats,
             },
-            series: this.state.data
+            series: this.state.data,
         }
 
-      return this.state.data ? 
+      return (
+        <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6"> 
+        {this.state.data ?
         <ReactHighcharts config={config} /> : 
         <Spinner name="pulse" style={{ width: 27 }} className="mx-auto" />
+        }
+        </div></div>)
     }
 }
 
