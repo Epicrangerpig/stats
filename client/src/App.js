@@ -2,75 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import { Route, Switch, Link } from 'react-router-dom'
-import 'react-select/dist/react-select.css';
 import './App.css';
+import Home from './components/Home';
 import About from './components/About';
-import Comparison from './Comparison';
+import Comparison from './components/Comparison';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pokemon: [],
-      selectedOptions: null,
-      loadingPokemon: true,
-    };
-  }
-
-  componentDidMount() {
-    this.getPokemonList();
-  }
-
-  getPokemonList() {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/pokemon`)
-      .then((res) => {
-        this.setState({ pokemon: res.data.data, loadingPokemon: false });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   render() {
     return (
       <div className="container" style={{ marginTop: 80 }}>
         <Switch>
-          <Route 
-            exact 
-            path="/" 
-            render={() => (
-              <div className="row justify-content-center">
-                <div className="col-md-6">
-                  <h1>Select pokémon</h1>
-                  <Select
-                    multi
-                    value={this.state.selectedOptions}
-                    isLoading={this.state.loadingPokemon}
-                    options={
-                      this.state.pokemon.map(pokemon =>
-                        ({
-                          value: pokemon.id,
-                          label: `${pokemon.forme}`,
-                        }),
-                      )
-                    }
-                    onChange={value => this.setState({ selectedOptions: value })}
-                  />                  
-                  <div className="row justify-content-center">
-                    <Link
-                      className="btn btn-secondary" 
-                      style={{ marginTop: 20 }}
-                      to={this.state.selectedOptions ? "/compare/" + this.state.selectedOptions.map(option => option.value).join(',') : ''}
-                    >
-                      compare
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )}
-          />
-
+          <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/compare/:ids" component={Comparison}/>
         </Switch>

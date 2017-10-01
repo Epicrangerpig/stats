@@ -48,7 +48,6 @@ class Comparison extends Component {
             series: this.state.data
         }
 
-
       return this.state.data ? 
         <ReactHighcharts config={config} /> : 
         <Spinner name="pulse" style={{ width: 27 }} className="mx-auto" />
